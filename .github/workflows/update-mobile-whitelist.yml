@@ -1,0 +1,48 @@
+name: Update mobile whitelist
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+  push:
+    paths:
+      - '.github/workflows/update-mobile-whitelist.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Karing rule set
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request
+          url = 'https://raw.githubusercontent.com/hxehex/russia-mobile-internet-whitelist/main/whitelist.txt'
+          text = urllib.request.urlopen(url, timeout=30).read().decode('utf-8')
+          seen = set()
+          domains = []
+          for raw in text.splitlines():
+              s = raw.strip()
+              if not s or s.startswith('#') or s in seen:
+                  continue
+              seen.add(s)
+              domains.append(s)
+          with open('ru-mobile-whitelist-domains.json', 'w', encoding='utf-8') as f:
+              json.dump({'version': 1, 'rules': [{'domain': domains}]}, f, ensure_ascii=False, separators=(',', ':'))
+              f.write('\n')
+          print('domains=', len(domains))
+          PY
+      - name: Commit if changed
+        run: |
+          git add ru-mobile-whitelist-domains.json
+          if git diff --cached --quiet; then
+            echo 'No changes'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Update mobile whitelist domains'
+          git push
