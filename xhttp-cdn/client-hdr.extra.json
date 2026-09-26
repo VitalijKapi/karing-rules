@@ -1,0 +1,9 @@
+{
+  "uplinkHTTPMethod": "GET",
+  "uplinkDataPlacement": "header",
+  "uplinkDataKey": "X-Data",
+  "uplinkChunkSize": "1800-2400",
+  "scMaxEachPostBytes": "2560-3072",
+  "scMinPostsIntervalMs": "10-20",
+  "xPaddingBytes": "100-400"
+}

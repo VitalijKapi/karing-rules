@@ -1,0 +1,34 @@
+{
+  "tag": "vless-xhttp-hdr",
+  "listen": "127.0.0.1",
+  "port": 20443,
+  "protocol": "vless",
+  "settings": {
+    "clients": [
+      {
+        "id": "CHANGE-ME-UUID",
+        "email": "iphone-hdr"
+      }
+    ],
+    "decryption": "none"
+  },
+  "streamSettings": {
+    "network": "xhttp",
+    "security": "none",
+    "xhttpSettings": {
+      "path": "/CHANGE-ME-hdr",
+      "host": "",
+      "mode": "packet-up",
+      "uplinkHTTPMethod": "GET",
+      "uplinkDataPlacement": "header",
+      "uplinkDataKey": "X-Data",
+      "xPaddingBytes": "100-400",
+      "scMaxBufferedPosts": 60,
+      "serverMaxHeaderBytes": 32768
+    }
+  },
+  "sniffing": {
+    "enabled": true,
+    "destOverride": ["http", "tls", "quic"]
+  }
+}
