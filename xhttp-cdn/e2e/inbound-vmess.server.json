@@ -1,0 +1,28 @@
+{
+  "tag": "vmess-xhttp-backup",
+  "listen": "127.0.0.1",
+  "port": 20445,
+  "protocol": "vmess",
+  "settings": {
+    "clients": [
+      {
+        "id": "CHANGE-ME-UUID",
+        "email": "iphone-vmess"
+      }
+    ]
+  },
+  "streamSettings": {
+    "network": "xhttp",
+    "security": "none",
+    "xhttpSettings": {
+      "path": "/CHANGE-ME-vm",
+      "host": "",
+      "mode": "packet-up",
+      "uplinkHTTPMethod": "GET"
+    }
+  },
+  "sniffing": {
+    "enabled": true,
+    "destOverride": ["http", "tls", "quic"]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "tag": "vless-xhttp-enc",
+  "listen": "127.0.0.1",
+  "port": 20444,
+  "protocol": "vless",
+  "settings": {
+    "clients": [
+      {
+        "id": "CHANGE-ME-UUID",
+        "email": "iphone-enc"
+      }
+    ],
+    "decryption": "mlkem768x25519plus.xorpub.600s.CHANGE-ME-X25519-PRIVATE-KEY"
+  },
+  "streamSettings": {
+    "network": "xhttp",
+    "security": "none",
+    "xhttpSettings": {
+      "path": "/CHANGE-ME-enc",
+      "host": "",
+      "mode": "packet-up",
+      "uplinkHTTPMethod": "GET"
+    }
+  },
+  "sniffing": {
+    "enabled": true,
+    "destOverride": ["http", "tls", "quic"]
+  }
+}

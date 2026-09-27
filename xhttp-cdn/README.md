@@ -203,3 +203,7 @@ vless://CHANGE-ME-UUID@cdn.example.ru:443?encryption=none&security=tls&sni=cdn.e
 - https://github.com/ServerTechnologies/proxy-via-russian-cdn
 - https://github.com/Shadowrocket/config/issues/2
 - https://github.com/MetaCubeX/mihomo/discussions/3025
+
+---
+
+См. также [`e2e/`](e2e/README.md): как скрыть содержимое VLESS от CDN (VLESS Encryption / VMess).
